@@ -8,7 +8,10 @@ from pathlib import Path
 
 RACINE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RACINE / "src"))
-from predict import MODELE, charger_modele, predict as _predict  # noqa: E402  (fonctions du TP2)
+from predict import charger_modele  # noqa: E402  (fonctions du TP2)
+from predict import predict as _predict  # noqa: E402
+
+SEUIL_ABSTENTION = 0.60  # sous ce seuil, le modèle s'abstient : un humain doit trancher
 
 
 class SentimentClassifier:
@@ -20,9 +23,13 @@ class SentimentClassifier:
         charger_modele()  # échoue immédiatement si le joblib manque : on ne démarre pas sans modèle
 
     def predict(self, text: str) -> dict:
-        """Renvoie {'label': 'POSITIVE'|'NEGATIVE', 'score': float, 'text': aperçu}."""
+        """Renvoie {'label': 'POSITIVE'|'NEGATIVE'|'INDETERMINE', 'score': float, 'text': aperçu}."""
         r = _predict(text)  # lève ValueError si le texte est vide
-        return {"label": r["label"].upper(), "score": r["score"], "text": text[:100]}
+        label = r["label"].upper()
+        score = float(r["score"])
+        if score < SEUIL_ABSTENTION:
+            label = "INDETERMINE"
+        return {"label": label, "score": score, "text": text[:100]}
 
 
 def load_model() -> SentimentClassifier:

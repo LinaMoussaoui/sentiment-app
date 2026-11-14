@@ -15,6 +15,8 @@ from api.schemas import HealthResponse, PredictRequest, PredictResponse
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("sentiment_api")
 
+ETIQUETTES_CONTRAT = {"POSITIVE", "NEGATIVE", "INDETERMINE"}
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -33,7 +35,6 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS : indispensable pour un frontend web (TP5). En production, lister les domaines autorisés.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -73,10 +74,15 @@ async def predict(request: PredictRequest):
     try:
         result = clf.predict(request.text)
     except ValueError as e:
-        raise HTTPException(status_code=422, detail=str(e))
+        raise HTTPException(status_code=422, detail=str(e)) from None
     except Exception:
         logger.exception("Erreur lors de la prédiction")
+        raise HTTPException(status_code=500, detail="Erreur interne du serveur") from None
+
+    if result["label"] not in ETIQUETTES_CONTRAT:
+        logger.error("Étiquette inconnue renvoyée par le modèle : %r", result["label"])
         raise HTTPException(status_code=500, detail="Erreur interne du serveur")
+
     logger.info("predict: %r -> %s (%.2f)", request.text[:50], result["label"], result["score"])
     return result
 

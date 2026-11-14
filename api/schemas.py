@@ -1,11 +1,19 @@
-"""Contrats d'entrée et de sortie de l'API (Pydantic v2)."""
-from pydantic import BaseModel, Field
+﻿"""Contrats d'entrée et de sortie de l'API (Pydantic v2)."""
+from pydantic import BaseModel, Field, field_validator
 
 
 class PredictRequest(BaseModel):
     """Requête de prédiction."""
-    text: str = Field(..., min_length=1, max_length=2000, description="Texte à classifier",
+    text: str = Field(..., max_length=2000, description="Texte à classifier",
                       examples=["Livraison rapide, produit conforme, très satisfait"])
+
+    @field_validator("text")
+    @classmethod
+    def text_non_vide(cls, v: str) -> str:
+        """Refuse un texte vide une fois les blancs retirés (même règle que predict())."""
+        if not v.strip():
+            raise ValueError("texte vide")
+        return v
 
 
 class PredictResponse(BaseModel):

@@ -1,1 +1,21 @@
 text,attendu,difficulte,erreur_connue
+"Commande reçue en deux jours, emballage soigné",POSITIVE,,
+"Pas déçu du tout, je recommande",POSITIVE,négation,
+"Arrivé cassé, bravo le transporteur",NEGATIVE,ironie,
+"Produit conforme, livraison rapide, rien à dire",POSITIVE,,
+"Service client injoignable, je déconseille",NEGATIVE,,
+"Excellent rapport qualité prix, je rachèterai",POSITIVE,,
+"Fonctionne bien mais la notice est incompréhensible",POSITIVE,avis mitigé,
+"Très satisfait de mon achat, conforme aux photos",POSITIVE,,
+"Déçu, la qualité n'est pas au rendez-vous",NEGATIVE,,
+"Livraison en avance, produit nickel",POSITIVE,,
+"Le produit est arrivé avec un défaut, impossible de le retourner",NEGATIVE,,
+"Superbe, je recommande vivement",POSITIVE,,
+"Ne correspond pas du tout à la description",NEGATIVE,,erreur_connue
+"Correct pour le prix, sans plus",POSITIVE,avis mitigé,
+"Emballage abîmé, produit heureusement intact",POSITIVE,avis mitigé,
+"Impossible de contacter le SAV, très déçu",NEGATIVE,,
+"Rapport qualité prix imbattable, parfait",POSITIVE,,
+"Produit de mauvaise qualité, à éviter",NEGATIVE,,
+"Pas mal du tout, je suis content",POSITIVE,,
+"Vraiment pas terrible, je ne recommande pas",NEGATIVE,,erreur_connue
