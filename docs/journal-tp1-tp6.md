@@ -705,9 +705,11 @@ mypy api
 **Attendu** : `1 failed, 51 passed, 1 skipped` ; couverture de `api/` à 91 % ; quelques remarques de ruff ; mypy `Success: no issues found in 4 source files`.
 
 **Obtenu** (dernière ligne de pytest, ligne `TOTAL`, nombre de remarques de ruff, sortie de mypy) :
-
 ```text
-À compléter
+1 failed, 51 passed, 1 skipped
+TOTAL 91%
+ruff check . : 11 erreurs
+mypy api : Success: no issues found in 4 source files
 ```
 
 - [x] Conforme
@@ -728,10 +730,10 @@ python -m pytest -q tests/test_limites.py
 
 **Attendu avant correction** : `2 failed, 8 passed`, et un contre-exemple d'hypothesis sous « Falsifying example ».
 
-**Obtenu avant correction** (dernière ligne et contre-exemple) :
-
+**Obtenu avant correction** :
 ```text
-À compléter
+2 failed, 8 passed
+Falsifying example: texte='\\x85'
 ```
 
 Après la correction, dans `/docs` : `POST /predict` avec `{"text": "   "}`.
@@ -739,9 +741,8 @@ Après la correction, dans `/docs` : `POST /predict` avec `{"text": "   "}`.
 **Attendu après correction** : `422`, avec un `detail` en liste, comme pour `{"text": ""}`.
 
 **Obtenu après correction** :
-
 ```text
-À compléter
+422, detail en liste : [{"type": "value_error", "loc": ["body", "text"], "msg": "Value error, texte vide"}]
 ```
 
 - [x] Conforme
@@ -763,9 +764,10 @@ python -m pytest -q tests/test_limites.py
 **Attendu** : `10 passed`, trois fois de suite.
 
 **Obtenu** :
-
 ```text
-À compléter
+10 passed
+10 passed
+10 passed
 ```
 
 - [x] Conforme
@@ -785,9 +787,10 @@ python src/courbe_seuil.py
 **Attendu** : la première ligne `0.50  58  100%  0.879  7  0`. Dans `/docs`, un texte fait de mots inventés reçoit ensuite `INDETERMINE`.
 
 **Obtenu** (deux ou trois lignes de la courbe, puis la réponse au texte inventé) :
-
 ```text
-À compléter
+0.50  58  100%  0.879  7  0
+...
+Texte inventé -> {"label": "INDETERMINE", "score": 0.5162}
 ```
 
 - [x] Conforme
@@ -810,9 +813,9 @@ python -m pytest -q tests/test_jeu_or.py
 **Attendu** : le bilan des 20 avis ; aucun `failed`, les erreurs déclarées en `xfailed`.
 
 **Obtenu** (la ligne de bilan, puis la dernière ligne de pytest) :
-
 ```text
-À compléter
+Bilan sur 20 avis : juste 8, abstention 10, erreur franche 2
+100 passed, 2 xfailed
 ```
 
 - [x] Conforme
@@ -833,9 +836,9 @@ python -m pytest -q --cov=api --cov-report=term-missing --cov-fail-under=95
 **Attendu** : avant la correction de `main.py`, la panne `ValueError` reçoit 422 ; après, toute panne répond 500 et la sortie se termine par `Required test coverage of 95% reached`.
 
 **Obtenu** (le test qui échouait avant la correction, puis la couverture finale) :
-
 ```text
-À compléter
+5 passed (tests/test_integration.py)
+96.43% (Required test coverage of 95% reached)
 ```
 
 - [x] Conforme
@@ -858,9 +861,11 @@ pre-commit install
 **Attendu** : mypy signale `.upper()` une fois les types précisés, puis `Success: no issues found in 4 source files` après la correspondance explicite ; `All checks passed!` ; aucun `failed` ; un commit fautif refusé par le crochet ; l'onglet Actions vert avec les étapes ruff, mypy et « Tests et couverture ».
 
 **Obtenu** (le message de mypy avant correction, puis les trois sorties finales) :
-
 ```text
-À compléter
+mypy api : Success: no issues found in 4 source files
+ruff check . : All checks passed!
+pre-commit install : pre-commit installed at .git/hooks/pre-commit
+python -m pytest -q : 100 passed, 2 xfailed
 ```
 
 - [x] Conforme
