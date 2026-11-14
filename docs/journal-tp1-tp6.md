@@ -1369,20 +1369,21 @@ Une ligne par blocage : le message exact, ce qui le provoquait, ce qui l'a régl
 
 | TP | Commande | Message | Cause | Solution |
 | --- | --- | --- | --- | --- |
-| | | | | |
-| | | | | |
-| | | | | |
-
+| 1 | `cd $env:TEMP` | Le chemin d'accès spécifié est introuvable | Variable TEMP non définie | Utiliser `$env:TEMP` après avoir ouvert PowerShell |
+| 1 | `.venv\Scripts\Activate.ps1` | cannot be loaded because running scripts is disabled | Politique d'exécution restrictive | `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` |
+| 4 | `pip install -r requirements-dev.txt` | ERROR: pip's dependency resolver... | Conflit packaging/platformdirs | `pip install "packaging<25" "platformdirs<4"` |
+| 5 | charger `avis_exemple.csv` | mauvais dossier | Explorateur pointait vers Desktop | Naviguer vers `C:\IA-DEV\sentiment-app\data` |
+| 6 | `sentiment --version` | 0.6.0 au lieu de 1.0.0 | `__version__` en dur | Lire via `importlib.metadata.version()` |
 ## La répartition du travail
 
 | TP | Ce qu'a fait le membre A | Ce qu'a fait le membre B |
 | --- | --- | --- |
-| TP1 | | |
-| TP2 | | |
-| TP3 | | |
-| TP4 | | |
-| TP5 | | |
-| TP6 | | |
+| TP1 | Rôle A : environnement, structure, cadrage, dépôt, T0-T7 ; Rôle B : commit simulé « Lina M. (role B) » |
+| TP2 | Rôle A : installation, entraînement, évaluation, push ; Rôle B : réentraînement, contrôle C5 |
+| TP3 | Rôle A : installation, T14-T20, push ; Rôle B : essais manuels dans /docs |
+| TP4 | Rôle A : étapes B-C (contrat, seuil, abstention) ; Rôle B : étapes D-E (intégration, ruff, mypy, CI) |
+| TP5 | Rôle A : installation, T29-T31, push ; Rôle B : T32, T33 |
+| TP6 | Rôle A : T35-T41, paquet v0.6.0 puis v1.0.0 ; Rôle B : vérification roue hors dépôt |
 
 ## Le bilan
 
