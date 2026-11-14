@@ -1,6 +1,8 @@
 """sentiment-app : analyse de sentiment d'avis clients (modèle, API, interface).
 
-La version suit les TP du cours : 0.N.0 à la fin du TP N.
+La version est lue dans les métadonnées du paquet installé (pyproject.toml → project.version).
 """
 
-__version__ = "0.6.0"
+from importlib.metadata import version
+
+__version__ = version("sentiment-app")

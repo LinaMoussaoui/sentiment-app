@@ -1,52 +1,32 @@
-#!/usr/bin/env python
-"""Prédiction unitaire : la fonction que l'API de la semaine 3 appellera.
-
-Usage :
-  python src/predict.py "Livraison rapide, très satisfait"
-  >>> from predict import predict ; predict("texte")
-
-Le modèle est cherché dans cet ordre :
-  1. la variable d'environnement SENTIMENT_MODELE (chemin absolu ou relatif) ;
-  2. models/sentiment.joblib à la racine du dépôt.
-"""
-import os
+"""Prédiction unitaire : le modèle est embarqué dans le paquet."""
 import sys
 from functools import lru_cache
-from pathlib import Path
+from importlib.resources import files
+from typing import TypedDict
 
 import joblib
 
-RACINE = Path(__file__).resolve().parents[1]
-MODELE = RACINE / "models" / "sentiment.joblib"
 
-
-def chemin_modele() -> Path:
-    """Le chemin du modèle : SENTIMENT_MODELE s'il est défini, sinon models/sentiment.joblib."""
-    env = os.environ.get("SENTIMENT_MODELE")
-    if env:
-        return Path(env)
-    return MODELE
+class Resultat(TypedDict):
+    label: str
+    score: float
 
 
 @lru_cache(maxsize=1)
 def charger_modele():
-    """Chargé une seule fois par processus, pas à chaque appel."""
-    chemin = chemin_modele()
-    if not chemin.exists():
-        raise FileNotFoundError(
-            f"{chemin} absent : définissez SENTIMENT_MODELE ou lancez python src/train.py"
-        )
-    return joblib.load(chemin)
+    """Lit le modèle embarqué dans le paquet installé, où qu'il soit sur le disque."""
+    with files("sentiment_app").joinpath("modele/sentiment.joblib").open("rb") as f:
+        return joblib.load(f)
 
 
-def predict(texte: str) -> dict:
+def predict(texte: str) -> Resultat:
     """Renvoie {'label': 'positive'|'negative', 'score': float}."""
     if not isinstance(texte, str) or not texte.strip():
         raise ValueError("texte vide")
     pipeline = charger_modele()
     etiquette = pipeline.predict([texte])[0]
     score = float(pipeline.predict_proba([texte]).max())
-    return {"label": etiquette, "score": round(score, 4)}
+    return {"label": str(etiquette), "score": round(score, 4)}
 
 
 def main() -> int:
