@@ -940,9 +940,8 @@ python -m pytest -q
 **Attendu** : la simulation liste `ui/`, les deux fichiers de tests, `data/avis_exemple.csv` et `docs/semaine5.md`, puis les compléments du `.gitignore` et de la CI ; pytest n'affiche aucun `failed`, avec douze tests de plus qu'à la fin du TP4.
 
 **Obtenu** :
-
 ```text
-À compléter
+94 passed, 2 xfailed
 ```
 
 - [x] Conforme
@@ -968,9 +967,9 @@ streamlit run ui/app.py
 **Attendu** : la page s'ouvre sur `http://localhost:8501` et affiche `API prête : tfidf-logreg (TP2, models/sentiment.joblib)`.
 
 **Obtenu** :
-
 ```text
-À compléter
+Page ouverte sur http://localhost:8501
+API prête : tfidf-logreg (TP2, models/sentiment.joblib)
 ```
 
 - [x] Conforme
@@ -988,9 +987,9 @@ Analysez « Livraison rapide, produit conforme, très satisfait », puis « Prod
 **Attendu** : Avis positif, 78 % ; puis Avis négatif, 75 %.
 
 **Obtenu** :
-
 ```text
-À compléter
+Avis positif 78 %
+Avis négatif 75 %
 ```
 
 - [x] Conforme
@@ -1010,9 +1009,9 @@ Analysez « xqzvb wlkptr grombu ».
 **Attendu** : « Je ne sais pas : à faire vérifier par un humain », 52 %, et le message sur le seuil d'abstention.
 
 **Obtenu** :
-
 ```text
-À compléter
+Je ne sais pas : à faire vérifier par un humain, 52 %
+Encadré : "La confiance est sous le seuil d'abstention : un humain doit trancher."
 ```
 
 - [x] Conforme
@@ -1030,9 +1029,9 @@ Analysez trois espaces. Arrêtez ensuite l'API (`Ctrl+C` dans son terminal), rec
 **Attendu** : l'avertissement « Texte refusé » ; puis, l'API arrêtée, « API injoignable : lancez d'abord uvicorn api.main:app ».
 
 **Obtenu** :
-
 ```text
-À compléter
+3 espaces -> "Texte refusé : vide, fait d'espaces, ou de plus de 2000 caractères"
+API arrêtée + F5 -> "API injoignable : lancez d'abord uvicorn api.main:app"
 ```
 
 - [x] Conforme
@@ -1052,9 +1051,10 @@ Onglet « Un fichier d'avis », fichier `data/avis_exemple.csv`, puis « Téléc
 **Attendu** : un tableau de six avis ; le résumé `{'INDETERMINE': 1, 'NEGATIVE': 2, 'POSITIVE': 3}` ; un fichier `resultats.csv` téléchargé.
 
 **Obtenu** :
-
 ```text
-À compléter
+Tableau de 6 avis
+{'INDETERMINE': 1, 'NEGATIVE': 2, 'POSITIVE': 3}
+resultats.csv téléchargé
 ```
 
 - [x] Conforme
@@ -1149,9 +1149,8 @@ python -m pytest -q
 **Attendu** : 2 failed, voulus : `test_le_modele_se_place_ou_l_on_veut` et `test_l_api_ne_bricole_plus_le_chemin_de_python`
 
 **Obtenu** :
-
 ```text
-À compléter
+2 failed, 94 passed, 2 xfailed
 ```
 
 - [x] Conforme
@@ -1174,9 +1173,9 @@ python src/predict.py "Livraison rapide, produit conforme, très satisfait"
 **Attendu** : 1 failed ; `positive (confiance 78%)`
 
 **Obtenu** :
-
 ```text
-À compléter
+1 failed, 99 passed, 2 xfailed
+positive (confiance 78%)
 ```
 
 - [x] Conforme
@@ -1199,9 +1198,10 @@ mypy api
 **Attendu** : aucun failed ; `Select-String` ne trouve rien ; ruff et mypy muets
 
 **Obtenu** :
-
 ```text
-À compléter
+100 passed, 2 xfailed
+ruff : All checks passed!
+mypy : Success: no issues found in 4 source files
 ```
 
 - [x] Conforme
@@ -1225,9 +1225,10 @@ sentiment serve
 **Attendu** : `sentiment-app 0.6.0` ; `POSITIVE` 0.777 ; `INDETERMINE` 0.5162 ; `/health` répond `OK`
 
 **Obtenu** :
-
 ```text
-À compléter
+sentiment-app 0.6.0
+{"label": "POSITIVE", "score": 0.777, ...}
+{"label": "INDETERMINE", "score": 0.5162, ...}
 ```
 
 - [x] Conforme
@@ -1248,9 +1249,8 @@ python -m build --wheel
 **Attendu** : `sentiment_app-0.6.0-py3-none-any.whl`, avec `api`, `sentiment_app`, `ui` seulement
 
 **Obtenu** :
-
 ```text
-À compléter
+sentiment_app-0.6.0-py3-none-any.whl
 ```
 
 - [x] Conforme
@@ -1275,9 +1275,9 @@ roue-tp6\Scripts\sentiment predict "Livraison rapide, produit conforme, très sa
 **Attendu** : sans la variable : « modèle introuvable », code 1 ; avec : `POSITIVE` 0.777
 
 **Obtenu** :
-
 ```text
-À compléter
+Sans SENTIMENT_MODELE : "modèle introuvable" (code 1)
+Avec SENTIMENT_MODELE : {"label": "POSITIVE", "score": 0.777}
 ```
 
 - [x] Conforme
@@ -1301,9 +1301,10 @@ git push origin v0.6.0
 **Attendu** : CI verte, étape « Roue installée hors du dépôt (TP6) » comprise ; l'étiquette `v0.6.0` visible sur GitHub
 
 **Obtenu** :
-
 ```text
-À compléter
+Commit cbf3785 + tag v0.6.0
+main -> main
+* [new tag] v0.6.0 -> v0.6.0
 ```
 
 - [x] Conforme
