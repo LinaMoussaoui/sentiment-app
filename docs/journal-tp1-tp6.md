@@ -54,7 +54,7 @@ git config --global user.name
 **Obtenu** :
 
 ```text
-À compléter
+Non applicable (rôle B simulé, pas de binôme)
 ```
 
 - [x] Conforme
@@ -79,7 +79,7 @@ git config --global user.name
 **Obtenu** :
 
 ```text
-À compléter
+Non applicable (rôle B simulé, pas de binôme)
 ```
 
 - [x] Conforme
@@ -461,7 +461,7 @@ egative (confiance 0.5335)`, 20 termes vers negative (-1.0061) contre 13 vers po
 **Obtenu** :
 
 ```text
-À compléter
+Non applicable (rôle B simulé, pas de binôme)
 ```
 
 - [x] Conforme
@@ -486,7 +486,7 @@ python -m pytest -q
 **Obtenu** :
 
 ```text
-À compléter
+Non applicable (rôle B simulé, pas de binôme)
 ```
 
 - [x] Conforme
@@ -677,7 +677,7 @@ python -m pytest -q
 **Obtenu** :
 
 ```text
-À compléter
+Non applicable (rôle B simulé, pas de binôme)
 ```
 
 - [x] Conforme
@@ -891,7 +891,7 @@ python -m pytest tests/test_biais.py -q
 **Obtenu** :
 
 ```text
-À compléter
+Non applicable (rôle B simulé, pas de binôme)
 ```
 
 - [x] Conforme
@@ -917,7 +917,7 @@ python -m pytest -q
 **Obtenu** :
 
 ```text
-À compléter
+Non applicable (rôle B simulé, pas de binôme)
 ```
 
 - [x] Conforme
@@ -1078,7 +1078,7 @@ git push
 **Obtenu** :
 
 ```text
-À compléter
+Non applicable (rôle B simulé, pas de binôme)
 ```
 
 - [x] Conforme
@@ -1102,7 +1102,7 @@ streamlit run ui/app.py
 **Obtenu** :
 
 ```text
-À compléter
+Non applicable (rôle B simulé, pas de binôme)
 ```
 
 - [x] Conforme
@@ -1127,7 +1127,7 @@ streamlit run ui/app.py
 **Obtenu** :
 
 ```text
-À compléter
+Non applicable (rôle B simulé, pas de binôme)
 ```
 
 - [x] Conforme
@@ -1329,7 +1329,7 @@ python -m pytest tests/test_fiche_modele.py -q
 **Obtenu** :
 
 ```text
-À compléter
+Non applicable (rôle B simulé, pas de binôme)
 ```
 
 - [x] Conforme
@@ -1354,7 +1354,7 @@ sentiment --version
 **Obtenu** :
 
 ```text
-À compléter
+Non applicable (rôle B simulé, pas de binôme)
 ```
 
 - [x] Conforme
