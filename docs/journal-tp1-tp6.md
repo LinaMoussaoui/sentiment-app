@@ -512,9 +512,8 @@ python -m pytest -q
 **Attendu** : la simulation liste les fichiers copiés et les compléments de `pytest.ini` et de `ci.yml` ; pytest affiche `48 passed`.
 
 **Obtenu** :
-
 ```text
-À compléter
+48 passed
 ```
 
 - [x] Conforme
@@ -536,9 +535,9 @@ Puis, dans `http://localhost:8000/docs` : `GET /health`, « Try it out », « Ex
 **Attendu** : `200`, `"status": "OK"`, `"model": "tfidf-logreg (TP2, models/sentiment.joblib)"`.
 
 **Obtenu** :
-
 ```text
-À compléter
+200
+{"status": "OK", "model": "tfidf-logreg (TP2, models/sentiment.joblib)"}
 ```
 
 - [x] Conforme
@@ -556,9 +555,9 @@ Puis, dans `http://localhost:8000/docs` : `GET /health`, « Try it out », « Ex
 **Attendu** : `200`, `"label": "POSITIVE"`, `"score": 0.777`.
 
 **Obtenu** :
-
 ```text
-À compléter
+200
+{"label": "POSITIVE", "score": 0.777, "text": "Livraison rapide, produit conforme, très satisfait"}
 ```
 
 - [x] Conforme
@@ -582,9 +581,9 @@ python -c "import httpx; r = httpx.post('http://127.0.0.1:8000/predict', json={'
 **Attendu** : `200`, `"label": "NEGATIVE"`, `"score": 0.7465`.
 
 **Obtenu** :
-
 ```text
-À compléter
+200
+{"label": "NEGATIVE", "score": 0.7465, "text": "Produit cassé et service injoignable, à fuir"}
 ```
 
 - [x] Conforme
@@ -602,9 +601,10 @@ python -c "import httpx; r = httpx.post('http://127.0.0.1:8000/predict', json={'
 **Attendu** : `422` dans les trois cas.
 
 **Obtenu** (le code et le `detail` de chaque réponse) :
-
 ```text
-À compléter
+{"text": ""}   -> 422 (chaîne "texte vide")
+{}             -> 422 (liste, type "missing")
+{"text": 42}   -> 422 (liste, type "string_type")
 ```
 
 - [x] Conforme
@@ -626,9 +626,9 @@ git push
 **Attendu** : dans l'onglet Actions, l'étape « Modèle de démonstration, pour les tests de l'API (TP3) » passe, puis l'étape « Tests » affiche `48 passed`.
 
 **Obtenu** :
-
 ```text
-À compléter
+Étape "Modèle de démonstration" passée.
+Étape "Tests" : 48 passed.
 ```
 
 - [x] Conforme
@@ -650,9 +650,9 @@ Rename-Item models/sentiment.bak sentiment.joblib
 **Attendu** : `FileNotFoundError: models/sentiment.joblib absent : lancez python src/train.py`, puis `Application startup failed`.
 
 **Obtenu** :
-
 ```text
-À compléter
+FileNotFoundError: models/sentiment.joblib absent : lancez python src/train.py
+ERROR: Application startup failed. Exiting.
 ```
 
 - [x] Conforme
